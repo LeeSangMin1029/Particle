@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from "react";
+import Canvas from "./Canvas.js";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
+  const draw = (ctx, frameCount) => {};
+  const options = {
+    context: "2d",
+  };
+  useEffect(() => {
+    window.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      window.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+  return <Canvas draw={draw} options={options} />;
 }
 
 export default App;
